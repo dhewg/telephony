@@ -1,0 +1,18 @@
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 698910b9..dd54b3f1 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -74,8 +74,12 @@
+     ${D}/newamp2_energy_q.txt
+ )
+ 
++if(DEFINED GENERATE_CODEBOOK)
++    add_executable(generate_codebook IMPORTED)
++    set_target_properties(generate_codebook PROPERTIES
++        IMPORTED_LOCATION ${GENERATE_CODEBOOK})
++elseif(CMAKE_CROSSCOMPILING)
+ # when crosscompiling we need a native executable
+-if(CMAKE_CROSSCOMPILING)
+     include(ExternalProject)
+     ExternalProject_Add(codec2_native
+        SOURCE_DIR ${CMAKE_SOURCE_DIR}
