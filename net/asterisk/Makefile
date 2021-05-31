@@ -553,6 +553,7 @@ CONFIGURE_ARGS+= \
 	--without-execinfo \
 	$(if $(CONFIG_PACKAGE_$(PKG_NAME)-chan-mobile),--with-bluetooth="$(STAGING_DIR)/usr",--without-bluetooth) \
 	--with-cap="$(STAGING_DIR)/usr" \
+	$(if $(CONFIG_PACKAGE_$(PKG_NAME)-codec-codec2),--with-codec2="$(STAGING_DIR)/usr") \
 	$(if $(CONFIG_PACKAGE_$(PKG_NAME)-curl),--with-libcurl="$(STAGING_DIR)/usr") \
 	--with-gsm=internal \
 	--without-gtk2 \
@@ -860,6 +861,7 @@ $(eval $(call BuildAsteriskModule,chan-unistim,Unistim channel,UNISTIM protocol.
 $(eval $(call BuildAsteriskModule,codec-a-mu,Alaw to ulaw translation,Alaw and ulaw direct coder/decoder.,,,codec_a_mu,,))
 $(eval $(call BuildAsteriskModule,codec-adpcm,ADPCM text,Adaptive Differential PCM coder/decoder.,,,codec_adpcm,,))
 $(eval $(call BuildAsteriskModule,codec-alaw,Signed linear to alaw translation,Alaw coder/decoder.,,,codec_alaw,,))
+$(eval $(call BuildAsteriskModule,codec-codec2,Codec 2,Codec 2 Coder/Decoder,+libcodec2,,codec_codec2,,))
 $(eval $(call BuildAsteriskModule,codec-dahdi,DAHDI codec,Generic DAHDI transcoder codec translator.,+$(PKG_NAME)-chan-dahdi,,codec_dahdi,,))
 $(eval $(call BuildAsteriskModule,codec-g722,G.722,ITU G.722-64kbps G722 transcoder.,,,codec_g722,,))
 $(eval $(call BuildAsteriskModule,codec-g726,Signed linear to G.726 translation,ITU G.726-32kbps G726 transcoder.,,,codec_g726,,))
