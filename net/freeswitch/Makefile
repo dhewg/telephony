@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=freeswitch
 PKG_VERSION:=1.10.11
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 PKG_MAINTAINER:=Sebastian Kemper <sebastian_ml@gmx.net>
 
 PKG_SOURCE:=freeswitch-$(PKG_VERSION).-release.tar.xz
@@ -320,7 +320,7 @@ $(call Package/freeswitch/Default)
 	  +libcurl \
 	  +libedit \
 	  +libopenssl \
-	  +libpcre \
+	  +libpcre2 \
 	  +libpthread \
 	  +librt \
 	  +libspandsp3 \
