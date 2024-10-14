@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=asterisk
-PKG_VERSION:=20.8.1
+PKG_VERSION:=22.3.0
 PKG_RELEASE:=1
 PKG_CPE_ID:=cpe:/a:digium:asterisk
 
 PKG_SOURCE:=asterisk-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://downloads.asterisk.org/pub/telephony/asterisk/releases
-PKG_HASH:=fa498b6224e8c262de6840a67e00e3747e178fcefd9fb2595885d402ca3248f5
+PKG_HASH:=9cd9a29db5ebff861431f85b317a1f8263d49587f596886df1fcd298bd545593
 
 PKG_BUILD_DEPENDS:=libxml2/host
 
@@ -125,7 +125,6 @@ MODULES_AVAILABLE:= \
 	cel-custom \
 	cel-manager \
 	cel-sqlite3-custom \
-	chan-alsa \
 	chan-audiosocket \
 	chan-bridge-media \
 	chan-console \
@@ -513,7 +512,7 @@ AST_CFG_FILES:= \
 	users.conf res_config_sqlite3.conf
 
 AST_EMB_MODULES:=\
-	app_dial app_echo app_macro app_playback \
+	app_dial app_echo app_playback \
 	func_callerid func_logic func_strings func_timeout \
 	pbx_config res_crypto res_timing_timerfd
 
@@ -573,7 +572,6 @@ TARGET_CFLAGS+=$(TARGET_CPPFLAGS)
 
 CONFIGURE_ARGS+= \
 	--disable-xmldoc \
-	$(if $(CONFIG_PACKAGE_$(PKG_NAME)-chan-alsa),--with-asound="$(STAGING_DIR)/usr",--without-asound) \
 	--without-execinfo \
 	$(if $(CONFIG_PACKAGE_$(PKG_NAME)-chan-mobile),--with-bluetooth="$(STAGING_DIR)/usr",--without-bluetooth) \
 	--with-cap="$(STAGING_DIR)/usr" \
@@ -866,7 +864,6 @@ $(eval $(call BuildAsteriskModule,cdr-sqlite3,Provides CDR SQLITE3,SQLite3 CDR b
 $(eval $(call BuildAsteriskModule,cel-custom,Customizable CSV CEL backend,Customizable Comma Separated Values CEL backend.,,cel_custom.conf,cel_custom,,))
 $(eval $(call BuildAsteriskModule,cel-manager,AMI CEL backend,Asterisk Manager Interface CEL backend.,,,cel_manager,,))
 $(eval $(call BuildAsteriskModule,cel-sqlite3-custom,SQLite3 custom CEL,SQLite3 custom CEL module.,,cel_sqlite3_custom.conf,cel_sqlite3_custom,,))
-$(eval $(call BuildAsteriskModule,chan-alsa,ALSA channel,ALSA console channel driver.,+alsa-lib,alsa.conf,chan_alsa,,))
 $(eval $(call BuildAsteriskModule,chan-audiosocket,Audiosocket channel,Audiosocket channel.,+$(PKG_NAME)-res-audiosocket,,chan_audiosocket,,))
 $(eval $(call BuildAsteriskModule,chan-bridge-media,Bridge media channel driver,Bridge media channel driver.,,,chan_bridge_media,,))
 $(eval $(call BuildAsteriskModule,chan-console,Console channel driver,Console channel driver.,+portaudio,console.conf,chan_console,,))
@@ -877,7 +874,6 @@ $(eval $(call BuildAsteriskModule,chan-mobile,Bluetooth channel,Bluetooth mobile
 $(eval $(call BuildAsteriskModule,chan-motif,Jingle channel,Motif Jingle channel driver.,+$(PKG_NAME)-res-xmpp,motif.conf,chan_motif,,))
 $(eval $(call BuildAsteriskModule,chan-ooh323,H.323 channel,Objective Systems H.323 channel.,,ooh323.conf,chan_ooh323,,))
 $(eval $(call BuildAsteriskModule,chan-rtp,RTP media channel,RTP media channel.,+asterisk-res-rtp-multicast,,chan_rtp,,))
-$(eval $(call BuildAsteriskModule,chan-sip,SIP channel,Session Initiation Protocol.,+$(PKG_NAME)-app-confbridge,sip.conf sip_notify.conf,chan_sip,,))
 $(eval $(call BuildAsteriskModule,chan-skinny,Skinny channel,Skinny Client Control Protocol.,,skinny.conf,chan_skinny,,))
 $(eval $(call BuildAsteriskModule,chan-unistim,Unistim channel,UNISTIM protocol.,,unistim.conf,chan_unistim,,))
 $(eval $(call BuildAsteriskModule,codec-a-mu,Alaw to ulaw translation,Alaw and ulaw direct coder/decoder.,,,codec_a_mu,,))
