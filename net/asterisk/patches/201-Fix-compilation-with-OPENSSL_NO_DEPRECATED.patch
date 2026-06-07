@@ -20,7 +20,7 @@ Subject: [PATCH] Fix compilation with OPENSSL_NO_DEPRECATED
  #endif /* OPENSSL_NO_DH */
  #ifndef OPENSSL_NO_EC
  #include <openssl/ec.h>                 /* for EC_KEY_free, EC_KEY_new_by_cu... */
-@@ -189,7 +188,7 @@ static void *handle_tcptls_connection(vo
+@@ -154,7 +153,7 @@ struct ast_tcptls_session_instance *ast_
  			|| (!tcptls_session->client && ast_test_flag(&tcptls_session->parent->tls_cfg->flags, AST_SSL_VERIFY_CLIENT))) {
  			X509 *peer;
  			long res;
@@ -29,7 +29,7 @@ Subject: [PATCH] Fix compilation with OPENSSL_NO_DEPRECATED
  			if (!peer) {
  				ast_log(LOG_ERROR, "No SSL certificate to verify from peer '%s'\n",
  					ast_sockaddr_stringify(&tcptls_session->remote_address));
-@@ -530,16 +529,15 @@ static int __ssl_setup(struct ast_tls_co
+@@ -548,16 +547,15 @@ static int __ssl_setup(struct ast_tls_co
  	if (!ast_strlen_zero(cfg->pvtfile)) {
  		BIO *bio = BIO_new_file(cfg->pvtfile, "r");
  		if (bio != NULL) {
@@ -50,7 +50,7 @@ Subject: [PATCH] Fix compilation with OPENSSL_NO_DEPRECATED
  		}
 --- a/res/res_rtp_asterisk.c
 +++ b/res/res_rtp_asterisk.c
-@@ -3122,7 +3122,7 @@ static int dtls_srtp_setup(struct ast_rt
+@@ -3129,7 +3129,7 @@ static int dtls_srtp_setup(struct ast_rt
  	if (rtp->dtls_verify & AST_RTP_DTLS_VERIFY_FINGERPRINT) {
  		X509 *certificate;
  
