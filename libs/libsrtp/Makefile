@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libsrtp
-PKG_VERSION:=2.6.0
+PKG_VERSION:=2.8.1
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=v$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/cisco/libsrtp
-PKG_MIRROR_HASH:=7ee6ba7138e7e3c4b16dbb6aa1cd639dcca517f2aa3f7dafb2cf245d932e8448
+PKG_MIRROR_HASH:=9ce45386adf9b10a7e8e2ca8d31d45099d5f31b0f9d5e27c6fdea156ce4aef94
 
 PKG_MAINTAINER:=Jiri Slachta <jiri@slachta.eu>
 PKG_LICENSE:=BSD-3-Clause
@@ -31,7 +31,7 @@ define Package/libsrtp2
   CATEGORY:=Libraries
   TITLE:=Secure RTP (SRTP) library, v$(PKG_VERSION)
   URL:=https://github.com/cisco/libsrtp
-  DEPENDS:=+libopenssl
+  DEPENDS:=+libopenssl +libatomic
   ABI_VERSION:=1
 endef
 
